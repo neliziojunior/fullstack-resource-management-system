@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_URL } from "../services/api";
+import api from "../services/api";
 
 export function Login() {
   const [email, setEmail] = useState("");
@@ -9,20 +9,22 @@ export function Login() {
   const navigate = useNavigate();
 
   async function handleLogin() {
-    const response = await fetch(`${API_URL}/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      const response = await api.post("/auth/login", {
+        email,
+        password,
+      });
 
-    const data = await response.json();
+      const token = response.data.token;
 
-    localStorage.setItem("token", data.token);
+      localStorage.setItem("token", token);
 
-    // 🔥 REDIRECIONAMENTO CORRETO
-    navigate("/dashboard");
+      // redireciona
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Erro no login:", error);
+      alert("Email ou senha inválidos");
+    }
   }
 
   return (
@@ -48,3 +50,5 @@ export function Login() {
     </div>
   );
 }
+
+

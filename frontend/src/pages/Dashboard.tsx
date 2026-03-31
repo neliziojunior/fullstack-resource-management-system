@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_URL } from "../services/api";
+import api from "../services/api";
 import { Layout } from "../components/Layout";
 
+type Stats = {
+  total: number;
+  ativos: number;
+  inativos: number;
+};
 
 export function Dashboard() {
-  const [stats, setStats] = useState<any>(null);
+  const [stats, setStats] = useState<Stats | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,45 +21,50 @@ export function Dashboard() {
       return;
     }
 
-    fetch(`${API_URL}/dashboard`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setStats(data));
-  }, []);
+    async function fetchDashboard() {
+      try {
+        const response = await api.get("/dashboard");
+        setStats(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar dashboard:", error);
+        navigate("/");
+      }
+    }
+
+    fetchDashboard();
+  }, [navigate]);
 
   if (!stats) return <p>Carregando...</p>;
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Dashboard</h1>
+  <Layout>
+    <div className="flex justify-between items-center mb-6">
+      <h1 className="text-3xl font-bold">Dashboard</h1>
 
-      <div style={{ display: "flex", gap: "20px" }}>
-        <div style={cardStyle}>
-          <h2>Total</h2>
-          <p>{stats.total}</p>
-        </div>
+      <button
+        onClick={() => navigate("/resources")}
+        className="bg-blue-500 text-white px-4 py-2 rounded"
+      >
+        Ver Recursos
+      </button>
+    </div>
 
-        <div style={cardStyle}>
-          <h2>Ativos</h2>
-          <p>{stats.ativos}</p>
-        </div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="bg-white p-6 rounded-2xl shadow">
+        <h2 className="text-gray-500">Total</h2>
+        <p className="text-2xl font-bold">{stats.total}</p>
+      </div>
 
-        <div style={cardStyle}>
-          <h2>Inativos</h2>
-          <p>{stats.inativos}</p>
-        </div>
+      <div className="bg-green-500 text-white p-6 rounded-2xl shadow">
+        <h2>Ativos</h2>
+        <p className="text-2xl font-bold">{stats.ativos}</p>
+      </div>
+
+      <div className="bg-red-500 text-white p-6 rounded-2xl shadow">
+        <h2>Inativos</h2>
+        <p className="text-2xl font-bold">{stats.inativos}</p>
       </div>
     </div>
-  );
+  </Layout>
+);
 }
-
-const cardStyle = {
-  padding: "20px",
-  border: "1px solid #ccc",
-  borderRadius: "10px",
-  width: "150px",
-  textAlign: "center" as const,
-};

@@ -1,75 +1,126 @@
-# React + TypeScript + Vite
+# 🚀 Projeto Full Stack - Dashboard de Recursos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interface web desenvolvida em React para consumo de uma API REST com autenticação JWT, permitindo gerenciamento completo (CRUD) de recursos.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🖥️ Preview
 
-## React Compiler
+<!-- Adicione prints aqui -->
+![Dashboard] ![alt text](<Captura de tela de 2026-03-31 14-51-22.png>)
+![Recursos] ![alt text](<Captura de tela de 2026-03-31 14-50-28.png>)
+![Login] ![alt text](<Captura de tela de 2026-03-31 14-47-20.png>)
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+---
 
-Note: This will impact Vite dev & build performances.
+## 🔗 Backend
 
-## Expanding the ESLint configuration
+Este frontend consome a API disponível em:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+👉 http://localhost:3000
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Repositório do backend:
+👉 (adicione aqui o link do seu backend se quiser separar)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🔐 Acesso para Teste
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Email: admin@email.com
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Senha: 123456
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+
+---
+
+## ⚙️ Funcionalidades
+
+- 🔐 Autenticação com JWT
+- 📊 Dashboard com métricas (total, ativos, inativos)
+- 📦 CRUD completo de recursos:
+  - Criar
+  - Listar
+  - Editar
+  - Deletar
+- 🔒 Rotas protegidas
+- 🎨 Interface moderna com TailwindCSS
+- 🔄 Integração com API via Axios
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- React.js
+- TypeScript
+- Vite
+- Axios
+- TailwindCSS
+- React Router DOM
+
+---
+
+## 📁 Estrutura do Projeto
+
+src/
+├── components/
+│ └── Layout.tsx
+├── pages/
+│ ├── Login.tsx
+│ ├── Dashboard.tsx
+│ └── Resources.tsx
+├── services/
+│ └── api.ts
+├── App.tsx
+└── main.tsx
+
+
+---
+
+## 🚀 Como rodar o projeto
+
+### 1. Clonar repositório
+
+```bash
+git clone https://github.com/seu-usuario/seu-repo.git
+
+2. Instalar dependências
+npm install
+3. Rodar o projeto
+npm run dev
+4. Acessar
+http://localhost:5173
+
+
+🔧 Configuração da API
+baseURL: "http://localhost:3000"
+
+📌 Observações
+O token JWT é armazenado no localStorage
+Todas as rotas protegidas exigem autenticação
+O projeto segue boas práticas de separação de responsabilidades
+📈 Melhorias Futuras
+ Sistema de permissões (roles)
+ Paginação de recursos
+ Filtros e busca
+ Dark mode
+ Deploy (Vercel)
+👨‍💻 Autor
+
+Desenvolvido por Junior Lefundes
+
+LinkedIn: https://www.linkedin.com/in/neliziojunior
+GitHub: https://github.com/neliziojunior
+📄 Licença
+
+Este projeto é de uso educacional.
+
+
+---
+
+# 🎯 O QUE ISSO TE ENTREGA
+
+✔️ padrão profissional real  
+✔️ pronto pra recrutador  
+✔️ organizado e legível  
+✔️ mostra domínio técnico  
+
